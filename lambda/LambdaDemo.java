@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public class LambdaDemo {
     public static void print(String message) {
@@ -60,11 +61,20 @@ public class LambdaDemo {
     }
 
     public static void binaryOperator() {
-        //var x = 1 + 2; // has two operands and a single result
+        // var x = 1 + 2; // has two operands and a single result
         BinaryOperator<Integer> add = (a, b) -> a + b;
         Function<Integer, Integer> square = a -> a * a;
         var result = add.andThen(square).apply(1, 2);
         System.out.println(result);
+    }
+
+    public static void unaryOperator() {
+        // extends the Function interface
+        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> increment = n -> n + 1;
+        var result = increment.andThen(square).apply(1);
+        System.out.println(result);
+
     }
 
 }
