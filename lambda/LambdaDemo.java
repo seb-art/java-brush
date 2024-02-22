@@ -2,6 +2,7 @@ package lambda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -55,6 +56,14 @@ public class LambdaDemo {
         Predicate<String> hasRightBrace = str -> str.endsWith("}");
         Predicate<String> hasLeftAndRightBraces = hasLeftBrace.and(hasRightBrace);
         var result = hasLeftAndRightBraces.test("{key:value}");
+        System.out.println(result);
+    }
+
+    public static void binaryOperator() {
+        //var x = 1 + 2; // has two operands and a single result
+        BinaryOperator<Integer> add = (a, b) -> a + b;
+        Function<Integer, Integer> square = a -> a * a;
+        var result = add.andThen(square).apply(1, 2);
         System.out.println(result);
     }
 
